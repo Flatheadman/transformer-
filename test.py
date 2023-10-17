@@ -14,4 +14,4 @@ tensor2 = torch.tensor([5,6,7])
 print(tensor2)
 
 res = tensor1 * tensor2
-print(res)
+print(res, 123)
