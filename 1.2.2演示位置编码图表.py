@@ -1,7 +1,9 @@
+import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
 import math
+import numpy as np
 
 
 class PositionEncoding(nn.Module):
@@ -39,7 +41,11 @@ class PositionEncoding(nn.Module):
         input_data = input_data + Variable(self.position_encode[:, :input_data.size(1)], requires_grad=False)
         return self.dropout(input_data)
 
-d_model = 512
-dropout = 0.1
-max_len = 60
 
+plt.figure(figsize=(15, 5))
+pe = PositionEncoding(20, 0)
+y = pe(Variable(torch.zeros(1, 100, 20)))
+plt.plot(np.arange(100), y[0, :, 4:8].data.numpy())
+
+plt.legend(["dim %d"%p for p in [4, 5, 6, 7]])
+plt.show()
